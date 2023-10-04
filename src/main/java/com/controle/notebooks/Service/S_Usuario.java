@@ -13,6 +13,18 @@ public class S_Usuario {
         this.r_usuario =  r_usuario;
     }
 
+    public static M_Usuario verificaLogin(String matricula, String senha){
+        matricula = S_Generico.limparNumero(matricula);
+
+        if(S_Generico.textoEstaVazio(matricula)){
+            return null;
+        }else if(S_Generico.textoEstaVazio(senha)){
+            return null;
+        }
+        return r_usuario.buscarPorMatriculaSenha(Long.parseLong(matricula),
+                senha);
+    }
+
     public static String cadastrarUsuario(String nome, String cargo, String matricula, String email){
         boolean podeSalvar = true;
         String mensagem = "";
